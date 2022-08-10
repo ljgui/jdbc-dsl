@@ -1,0 +1,12 @@
+/target/
+target/
+*/target/
+.classpath
+.project
+.idea/
+.settings/
+*.iml
+*/*.iml
+
+/logs/
+/THREAD_LOG_IS_UNDEFINED
