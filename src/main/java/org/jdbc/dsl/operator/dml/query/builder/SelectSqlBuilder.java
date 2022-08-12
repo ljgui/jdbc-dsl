@@ -2,22 +2,17 @@ package org.jdbc.dsl.operator.dml.query.builder;
 
 
 import lombok.AllArgsConstructor;
-import org.jdbc.dsl.metadata.dialect.Dialect;
-import org.jdbc.dsl.metadata.dialect.PostgresqlDialect;
+import org.jdbc.dsl.supports.Dialect;
+import org.jdbc.dsl.supports.postgresql.PostgresqlDialect;
 import org.jdbc.dsl.operator.SqlBuilder;
-import org.jdbc.dsl.operator.dml.query.QueryOperatorParameter;
-import org.jdbc.dsl.operator.fragments.SqlFragments;
-import org.jdbc.dsl.operator.fragments.query.SelectColumnFragmentBuilder;
 import org.jdbc.dsl.param.request.SqlRequest;
 import org.jdbc.dsl.param.request.SqlRequests;
 import org.jdbc.dsl.param.QueryParam;
 import org.jdbc.dsl.render.SqlAppender;
 import org.jdbc.dsl.utils.StringUtils;
 import org.jdbc.dsl.core.Query;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 简单查询构建器
@@ -53,7 +48,7 @@ public class SelectSqlBuilder implements SqlBuilder {
 
     public SqlRequest build(Query query){
         QueryParam param = query.getParam();
-         List<String> selectColumn = SelectColumnFragmentBuilder.of(dialect).createFragments(QueryOperatorParameter.of(param.getIncludes(), param.getExcludes())).getSql();
+//        SqlFragments fragments = SelectColumnFragmentBuilder.of(dialect).createFragments(QueryOperatorParameter.of(param.getIncludes(), param.getExcludes()));
 
         SqlAppender whereSql = new SqlAppender();
         buildWhere("",param.getTerms(),whereSql);
@@ -61,7 +56,7 @@ public class SelectSqlBuilder implements SqlBuilder {
             whereSql.removeFirst();
         }
 
-        return  doBuild(selectColumn,whereSql,param);
+        return  doBuild(null,whereSql,param);
     }
 
     private SqlRequest doBuild(List<String> selectColumn, SqlAppender whereSql,QueryParam param) {

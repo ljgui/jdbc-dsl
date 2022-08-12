@@ -1,9 +1,9 @@
-package org.jdbc.dsl.operator.dml.query;
+package org.jdbc.dsl.operator.fragments.query;
 
 import org.jdbc.dsl.core.Feature;
 import org.jdbc.dsl.core.FeatureType;
 import org.jdbc.dsl.core.RDBFeatureType;
-import org.jdbc.dsl.metadata.dialect.Dialect;
+import org.jdbc.dsl.supports.Dialect;
 import org.jdbc.dsl.operator.fragments.SqlFragments;
 
 /**

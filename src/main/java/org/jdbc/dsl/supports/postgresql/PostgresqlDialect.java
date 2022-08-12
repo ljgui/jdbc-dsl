@@ -1,20 +1,25 @@
-package org.jdbc.dsl.metadata.dialect;
+package org.jdbc.dsl.supports.postgresql;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.jdbc.dsl.core.FeatureType;
 import org.jdbc.dsl.param.Term;
 import org.jdbc.dsl.param.TermType;
 import org.jdbc.dsl.render.SqlAppender;
+import org.jdbc.dsl.supports.Dialect;
+import org.jdbc.dsl.supports.DialectFeacture;
+import org.jdbc.dsl.supports.DialectType;
 import org.jdbc.dsl.utils.StringUtils;
 
 import java.util.*;
 
 /**
- * @Description postgresql 方言
- * @Author lujiangui
- * @Date 2022/3/9 11:12
- * @Version
+ * postgresql 方言
+ * @Author ljgui
+ * @since 1.0.0
  */
-public class PostgresqlDialect implements Dialect{
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class PostgresqlDialect implements Dialect {
 
     static Map<String,Mapper> termTypeMappers = new HashMap<>();
 
@@ -108,13 +113,23 @@ public class PostgresqlDialect implements Dialect{
     }
 
     @Override
+    public DialectFeacture getDialectFeacture() {
+        return PostgresqlDialectFeatures.getInstance();
+    }
+
+    @Override
     public String getId() {
-        return "PostgreSQL";
+        return DialectType.POSTGRESQL.getId();
     }
 
     @Override
     public String getName() {
-        return "PostgreSQL";
+        return DialectType.POSTGRESQL.getName();
+    }
+
+    @Override
+    public FeatureType getType() {
+        return DialectType.POSTGRESQL;
     }
 
     interface Mapper {

@@ -1,8 +1,10 @@
-package org.jdbc.dsl.metadata.dialect;
+package org.jdbc.dsl.supports;
 
 
 import org.jdbc.dsl.core.Feature;
 import org.jdbc.dsl.core.RDBFeatureType;
+import org.jdbc.dsl.supports.mysql.MysqlDialect;
+import org.jdbc.dsl.supports.postgresql.PostgresqlDialect;
 import org.jdbc.dsl.utils.StringUtils;
 
 /**
@@ -13,11 +15,6 @@ import org.jdbc.dsl.utils.StringUtils;
  * @since 1.0.0
  */
 public interface Dialect extends Feature {
-
-    @Override
-    default RDBFeatureType getType() {
-        return RDBFeatureType.dialect;
-    }
 
     String getQuoteStart();
 
@@ -71,7 +68,7 @@ public interface Dialect extends Feature {
         return StringUtils.concat(tableName, ".", getQuoteStart(), isColumnToUpperCase() ? columnName.toUpperCase() : columnName, getQuoteEnd());
     }
 
-    Dialect MYSQL = new MysqlDialect();
-    Dialect POSTGRES = new PostgresqlDialect();
+
+    DialectFeacture getDialectFeacture();
 
 }

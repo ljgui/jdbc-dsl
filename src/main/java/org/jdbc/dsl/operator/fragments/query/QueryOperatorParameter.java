@@ -1,10 +1,11 @@
-package org.jdbc.dsl.operator.dml.query;
+package org.jdbc.dsl.operator.fragments.query;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jdbc.dsl.operator.dml.query.SelectColumn;
+import org.jdbc.dsl.operator.dml.query.SortOrder;
 import org.jdbc.dsl.param.Term;
 
-import javax.swing.*;
 import java.util.*;
 
 @Getter
@@ -42,13 +43,13 @@ public class QueryOperatorParameter {
         return fromAlias;
     }
 
-    public QueryOperatorParameter(List<SelectColumn> select,Set<String> selectExcludes){
+   /* public QueryOperatorParameter(List<SelectColumn> select,Set<String> selectExcludes){
         this.select = select;
         this.selectExcludes = selectExcludes;
     }
 
     public static QueryOperatorParameter of(List<SelectColumn> select,Set<String> selectExcludes){
         return new QueryOperatorParameter(select,selectExcludes);
-    }
+    }*/
 
 }

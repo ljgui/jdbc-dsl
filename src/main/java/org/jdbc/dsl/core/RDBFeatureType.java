@@ -10,9 +10,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum RDBFeatureType implements FeatureType{
+
+    termType("SQL条件"),
+    sqlBuilder("SQL构造器"),
     dialect("数据库方言"),
     function("函数"),
-    fragment("SQL片段"),;
+    fragment("SQL片段"),
+    paginator("分页器"),;
 
 
     @Override

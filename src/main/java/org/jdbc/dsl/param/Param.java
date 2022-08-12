@@ -28,7 +28,7 @@ public class Param implements Cloneable {
      * 指定要处理的字段
      */
     @NonNull
-    protected List<SelectColumn> includes = new LinkedList<>();
+    protected List<String> includes = new LinkedList<>();
 
     /**
      * 指定不处理的字段
@@ -83,13 +83,13 @@ public class Param implements Cloneable {
     }
 
     public <T extends Param> T includes(String... fields) {
-        List<SelectColumn> columns = Arrays.stream(fields).map(SelectColumn::of).collect(Collectors.toList());
-        includes.addAll(columns);
+        includes.addAll(Arrays.asList(fields));
         return (T) this;
     }
 
     public <T extends Param> T excludes(String... fields) {
         excludes.addAll(Arrays.asList(fields));
+        includes.removeAll(Arrays.asList(fields));
         return (T) this;
     }
 

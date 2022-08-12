@@ -230,4 +230,8 @@ public class CastUtils {
         return Optional.ofNullable(tryGetFirstValue(value));
     }
 
+    public static  <T> T cast(Object value){
+        return ((T) value);
+    }
+
 }

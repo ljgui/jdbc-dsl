@@ -2,7 +2,7 @@ package org.jdbc.dsl.operator;
 
 
 
-import org.jdbc.dsl.metadata.dialect.PostgresqlDialect;
+import org.jdbc.dsl.supports.postgresql.PostgresqlDialect;
 import org.jdbc.dsl.param.Term;
 import org.jdbc.dsl.render.SqlAppender;
 import org.jdbc.dsl.utils.StringUtils;
