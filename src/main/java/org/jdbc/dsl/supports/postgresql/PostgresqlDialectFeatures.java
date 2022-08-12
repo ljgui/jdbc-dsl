@@ -35,6 +35,11 @@ public class PostgresqlDialectFeatures extends DialectFeacture {
         addFeature(RDBFeatures.nEmpty);
 
 
+        addFeature(RDBFeatures.max);
+        addFeature(RDBFeatures.min);
+        addFeature(RDBFeatures.sum);
+        addFeature(RDBFeatures.avg);
+        addFeature(RDBFeatures.count);
 
         //注册默认的where条件构造器
         addFeature(new QueryTermsFragmentBuilder(PostgresqlDialect.getInstance()));

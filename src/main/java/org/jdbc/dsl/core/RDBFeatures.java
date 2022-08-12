@@ -1,6 +1,7 @@
 package org.jdbc.dsl.core;
 
 
+import org.jdbc.dsl.operator.fragments.function.SimpleFunctionFragmentBuilder;
 import org.jdbc.dsl.operator.fragments.query.QuerySqlFragmentBuilder;
 import org.jdbc.dsl.operator.fragments.term.*;
 import org.jdbc.dsl.param.TermType;
@@ -47,10 +48,10 @@ public interface RDBFeatures {
     /*===============函数==============*/
 
     /*==聚合函数==*/
-//    SimpleFunctionFragmentBuilder count = new SimpleFunctionFragmentBuilder("count", "计数");
-//    SimpleFunctionFragmentBuilder sum = new SimpleFunctionFragmentBuilder("sum", "求和");
-//    SimpleFunctionFragmentBuilder avg = new SimpleFunctionFragmentBuilder("avg", "平均值");
-//    SimpleFunctionFragmentBuilder max = new SimpleFunctionFragmentBuilder("max", "最大值");
-//    SimpleFunctionFragmentBuilder min = new SimpleFunctionFragmentBuilder("min", "最小值");
+    SimpleFunctionFragmentBuilder count = new SimpleFunctionFragmentBuilder("count", "计数");
+    SimpleFunctionFragmentBuilder sum = new SimpleFunctionFragmentBuilder("sum", "求和");
+    SimpleFunctionFragmentBuilder avg = new SimpleFunctionFragmentBuilder("avg", "平均值");
+    SimpleFunctionFragmentBuilder max = new SimpleFunctionFragmentBuilder("max", "最大值");
+    SimpleFunctionFragmentBuilder min = new SimpleFunctionFragmentBuilder("min", "最小值");
 
 }

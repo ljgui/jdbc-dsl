@@ -5,8 +5,6 @@ import org.jdbc.dsl.*;
 import org.jdbc.dsl.param.QueryParam;
 import org.jdbc.dsl.param.Term;
 import org.jdbc.dsl.utils.PropertyUtils;
-import org.jdbc.dsl.utils.StringUtils;
-
 import java.util.Arrays;
 import java.util.function.Function;
 
@@ -75,21 +73,21 @@ public final class Query<T, Q extends QueryParam> implements Conditional<Query<T
     }
 
     public <B> Query<T, Q> orderByAsc(StaticMethodReferenceColumn<B> column) {
-        param.orderBy(StringUtils.camelCase2UnderScoreCaseUpper(column.getColumn())).asc();
+        param.orderBy(column.getColumn()).asc();
         return this;
     }
 
     public <B> Query<T, Q> order(StaticMethodReferenceColumn<B> column, String ascOrDesc) {
         if ("asc".equalsIgnoreCase(ascOrDesc)){
-            param.orderBy(StringUtils.camelCase2UnderScoreCaseUpper(column.getColumn())).asc();
+            param.orderBy(column.getColumn()).asc();
         }else {
-            param.orderBy(StringUtils.camelCase2UnderScoreCaseUpper(column.getColumn())).desc();
+            param.orderBy(column.getColumn()).desc();
         }
         return this;
     }
 
     public <B> Query<T, Q> orderByDesc(StaticMethodReferenceColumn<B> column) {
-        param.orderBy(StringUtils.camelCase2UnderScoreCaseUpper(column.getColumn())).desc();
+        param.orderBy(column.getColumn()).desc();
         return this;
     }
 
@@ -115,7 +113,7 @@ public final class Query<T, Q extends QueryParam> implements Conditional<Query<T
     }
 
     public <B> Query<T, Q> groupby(StaticMethodReferenceColumn<B> column) {
-        param.groupBy(StringUtils.camelCase2UnderScoreCaseUpper(column.getColumn()));
+        param.groupBy(column.getColumn());
         return this;
     }
 
