@@ -84,8 +84,6 @@ public class DefaultQuerySqlBuilderTest {
 
         Query<Object, QueryParam> q = Query.of()
                 .like$("phone",  "135")
-                .$like("phone",  "135")
-                .$like$("phone",  "135")
                 .includes("id","age","img")
                 .in("name",Arrays.asList("1","2","3"))
                 .doPaging(0,10);
