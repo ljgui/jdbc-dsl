@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jdbc.dsl.anotation.Column;
 import org.jdbc.dsl.core.Query;
+import org.jdbc.dsl.param.QueryParam;
+import org.jdbc.dsl.param.TermType;
 import org.jdbc.dsl.supports.DialectType;
 import org.jdbc.dsl.supports.postgresql.PostgresqlDialect;
 import org.jdbc.dsl.operator.dml.query.BuildParameterQueryOperator;
@@ -47,6 +49,62 @@ public class DefaultQuerySqlBuilderTest {
         Assert.assertEquals(parameter.getPageIndex(), Integer.valueOf(10));
         Assert.assertEquals(parameter.getPageSize(), Integer.valueOf(0));
     }
+
+
+    @Test
+    public void testQuery() {
+        BuildParameterQueryOperator query = new BuildParameterQueryOperator("u_user");
+
+        Query<Object, QueryParam> q = Query.of()
+                .and("phone", TermType.like, "135")
+                .includes("id","age","img")
+                .doPaging(10,0);
+
+        NestConditional<Query<Object, QueryParam>> nest = q.nest();
+        nest.and("name", TermType.eq, "abc")
+                .and("age", TermType.gte, 18);
+
+        query.setParam(q.getParam());
+
+
+        QueryOperatorParameter parameter = query.getParameter();
+
+        Assert.assertEquals(parameter.getFrom(), "u_user");
+        Assert.assertFalse(parameter.getSelect().isEmpty());
+        Assert.assertFalse(parameter.getWhere().isEmpty());
+        Assert.assertEquals(parameter.getPageIndex(), Integer.valueOf(10));
+        Assert.assertEquals(parameter.getPageSize(), Integer.valueOf(0));
+    }
+
+    @Test
+    public void testSqlBuild() {
+        BuildParameterQueryOperator query = new BuildParameterQueryOperator("u_user");
+
+        Query<Object, QueryParam> q = Query.of()
+                .like$("phone",  "135")
+                .$like("phone",  "135")
+                .$like$("phone",  "135")
+                .includes("id","age","img")
+                .in("name",Arrays.asList("1","2","3"))
+                .doPaging(0,10);
+
+        NestConditional<Query<Object, QueryParam>> nest = q.nest();
+        nest.and("name", TermType.eq, "abc")
+                .and("age", TermType.gte, 18);
+
+        query.setParam(q.getParam());
+
+
+        QueryOperatorParameter parameter = query.getParameter();
+
+        SqlRequest request = DefaultQuerySqlBuilder.of(DialectType.MYSQL).build(parameter);
+        String nativeSql = request.toNativeSql();
+        String sql = request.getSql();
+        System.out.println(nativeSql);
+        System.out.println(sql);
+
+    }
+
 
     @Test
     public void test() {

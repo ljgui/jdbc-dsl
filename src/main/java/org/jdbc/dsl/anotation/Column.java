@@ -10,7 +10,7 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * @Description: 字段映射,不加此注解的，默认是属性名驼峰转下划线转大写
+ * 字段映射,不加此注解的，默认是属性名驼峰转下划线转大写
  * @Author: ljgui
  * @since 1.0.0
  */
